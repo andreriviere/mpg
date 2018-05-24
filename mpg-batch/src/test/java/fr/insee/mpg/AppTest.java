@@ -1,4 +1,4 @@
-package fr.insee.crpimaven;
+package fr.insee.mpg;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
