@@ -1,0 +1,27 @@
+<assembly xmlns="https://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.0.0.1-SNAPSHOT" 
+  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.0.0.1-SNAPSHOT http://maven.apache.org/xsd/assembly-1.0.0.1-SNAPSHOT.xsd">
+	<id>BIN</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	
+	
+	<fileSets>	
+    	 <fileSet>
+            <directory>target/script</directory>
+            <outputDirectory>bin</outputDirectory>
+			<includes>
+				<include>**/*.bat</include>
+	      </includes>
+        </fileSet>
+	</fileSets>
+	   
+    <dependencySets>
+    	<dependencySet>
+    		<outputDirectory>lib</outputDirectory>
+    	</dependencySet>
+    </dependencySets>
+	
+</assembly>

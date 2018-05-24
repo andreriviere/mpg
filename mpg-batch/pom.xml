@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>mpg-batch</artifactId>
+	<packaging>jar</packaging>
+	
+	<!-- Héritage du POM parent-->
+	<parent>
+		<groupId>fr.insee</groupId>
+		<artifactId>mpg</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<!-- Les propriétés servent à centraliser des informations qui sont utilisées ailleurs.-->
+	<properties>
+		<!-- 
+			Cette propriété est utilisée par les assemblies Insee, pour attribuer un nom aux fichiers contenus dans l'archive.
+			Par défaut, le nom donné est l'artifactId du projet, mais on pourra les adapter pour coller avec les normes de livraison.
+		-->
+		<insee.nomLivraison>${project.artifactId}</insee.nomLivraison>
+	</properties>
+	
+	<!-- Nom et description du projet-->
+	<name>Nom du projet - Module Batch</name>
+	<description>Description du projet - Module Batch</description>
+
+	<!-- Adresse URL de la page d'accueil du projet ; balise requise dans pour le déploiement de la documentation automatique -->
+	<url>https://www.insee.fr</url>
+
+	<!-- On définit ici le lien vers le tracker d'anomalies du projet. L'URL est disponible sur la page GForge du projet. -->
+	<issueManagement>
+		<system>gforge.insee.fr</system>
+		<url>https://gforge.insee.fr</url>
+	</issueManagement>
+  
+  
+  
+	<!--      Déploiement du projet sur CVS via Maven : ne rien mettre si vous utilisez Eclipse ou TortoiseCVS
+	
+		On définit ici les informations nécessaires pour relier le projet à son dépôt CVS.
+		Ces informations sont par exemple utilisées par les plugins scm et release de Maven.
+	-->
+	<scm>
+	<!-- 
+		La balise <connection> doit être de la forme :
+		scm:cvs:ext:idep@gforge.insee.fr:/cvsroot/nom-du-projet:nom-du-module
+		
+		Par exemple :
+		scm:cvs:ext:ozp6kz@gforge.insee.fr:/cvsroot/maven-repo:nom-du-module
+	-->
+	<!-- 
+		La balise URL doit contenir un lien vers le dépôt CVS de votre projet. Le plus simple est d'y accéder
+		par GForge, puis de copier/coller à la main l'URL depuis votre navigateur vers ce pom.
+	-->
+	</scm>
+  
+  
+  
+	<!-- 	Déploiement du site HTML : laisser en commentaire si vous n'utilisez pas la fonction
+	
+		Les balises suivantes permettent de définir l'URL du site sur lequel sera deployé les pages documentaires HTML générées par Maven lors de la commande mvn site:deploy.
+		Veuillez vous assurer d'avoir les droits nécessaires pour déployer des fichiers sur l'URL choisie avant de lancer la commande.
+		
+		Par exemple :
+		
+		<distributionManagement>
+		           <site>
+				<id>gforge.insee.fr</id>
+				<name>Site web test</name>
+				<url>
+					scp://gforge.insee.fr/insee/groups/maven-repo/htdocs/testSite
+				</url>
+			</site>
+		</distributionManagement>
+
+		Maven va déployer le site HTML sur le projet "maven-repo" de GForge. Il sera ensuite accessible
+		via l'URL https://gforge.insee.fr/groups/maven-repo/testSite/
+	-->
+    
+	
+	<!--
+		Ce bloc permet de recenser les différents membres de l'équipe projet, chacun étant défini dans une balise <developer>  distincte
+	-->
+	<developers>
+
+	<developer>
+	  <id>idep</id>
+	  <name>Prénom Nom</name>
+	  <email>prenom.nom@insee.fr</email>
+	  <organization>INSEE</organization>
+	  <organizationUrl>https://www.insee.fr</organizationUrl>
+	  <roles>
+		<role>Développeur</role>
+	  </roles>
+	</developer>
+
+	</developers>
+
+	<!--
+		Si des individus extérieurs à l'équipe projet ont contribué, ils peuvent être référencés à l'aide du bloc suivant
+		Dans le cas contraire,  simplement supprimer le bloc correspondant.
+	-->
+	<contributors>
+
+	<contributor>
+	  <name>Prénom Nom</name>
+	  <email>prenom.nom@organisation.fr</email>
+	  <!-- Si le contributeur est extérieur à l'Insee, on pourra définir son organisation d'appartenance-->
+	  <organization>Nom de l'organisation</organization>
+	  <organizationUrl>https://www.organisation.fr</organizationUrl>
+	  <roles>
+		<role>Testeur</role>
+	  </roles>
+	</contributor>
+
+	</contributors>
+
+	
+	
+	<!-- 
+		***************************************
+		LA GESTION DES DEPENDANCES COMMENCE ICI
+		***************************************
+	-->
+	<dependencies>
+	<!--
+		C'est ici que seront declarées toutes les dépendances du projet.
+		Par défaut, tous les projets possèdent une dépendance vers Log4j (version 1.2.15) et vers JUnit (version 4.7)
+		
+		La déclaration d'une dépendance se fait de la manière suivante (l'exemple est la déclaration de JUnit présente dans le fichier pom Insee) : 
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+		
+		Les tags <groupId>, <artifactId> et <version> servent à identifier la librairie que vous souhaitez ajouter en dépendance.
+		
+		Le tag <scope> correspond à la portée des dépendances :
+			- compile (valeur par defaut si le tag est omis) : pour la compilation ET l'exécution
+			- runtime : pour l'exécution uniquement
+			- test : pour l'exécution des tests
+			- provided : librairie déjà présente sur l'environnement d'exécution (exemple : la librairie servlet-api, qui sera portée par le serveur d'application)
+	-->
+		<dependency>
+		  <groupId>classworlds</groupId>
+		  <artifactId>classworlds</artifactId>
+		  <version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>fr.insee.config</groupId>
+			<artifactId>insee-config-batch</artifactId>
+			<version>${insee.config.version}</version>
+		</dependency>
+	
+	</dependencies>
+	<!-- 
+		*********************************
+		FIN DE LA GESTION DES DEPENDANCES
+		*********************************
+	-->
+
+	
+	<!--
+		Le tag <build> permet de gérer des éléments ayant trait à la construction du projet par Maven, notamment la configuration des plugins quand le comportement par défaut de ceux-ci n'est pas adapté.
+	-->
+	<build>
+	<!--
+		La configuration des plugins se fait au cas par cas, à l'aide de tags <plugin>, eux-mêmes contenus dans un tag <plugins>.
+		
+		Le tag se présente de la manière suivante (l'exemple est pris sur le plugin "site" dans le fichier pom Insee) : 
+		
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-site-plugin</artifactId>
+			<version>2.0.1</version>
+			<configuration>
+				<locales>fr</locales>
+			</configuration>
+		</plugin>
+		
+		Les tags <groupId>, <artifactId> et <version> servent à identifier le plugin que vous souhaitez ajouter configurer.
+		
+		Le tag <configuration> est celui qui va porter les différents éléments de configuration du plugin. Il va de soi que le contenu de ce tag change d'un plugin à l'autre.
+		Dans l'exemple, nous demandons au plugin "site" (chargé de créer le site HTML documentaire Maven) de générer un site en français.
+		
+		Quasiment tous les plugins possèdent un site Internet, sur lequel on pourra trouver les informations nécessaires à leur configuration.
+		
+	-->
+		<plugins>
+			<!--
+				Ce plugin est celui qui est utilisé pour construire des archives personnalisées à partir d'un projet.
+				
+				Le descripteur "assembly-bin.xml" construit une archive contenant l'archive de l'application ainsi
+				que ses dépendances.
+				
+				Le descripteur "assembly-batch.xml" construit une archive contenant l'archive précédente, les
+				fichiers de properties de l'application, et une fiche de livraison, selon les normes de livraison
+				pour les applications batch.
+			-->
+			
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>windows_classpath</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>build-classpath</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>target/windows_cp.properties</outputFile>
+                            <fileSeparator>\\</fileSeparator>
+                            <pathSeparator>;</pathSeparator>
+                            <outputFilterFile>true</outputFilterFile>
+                            <prefix>..\\lib\\</prefix>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>inject-classpath</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <copy todir="target/script">
+                                    <fileset dir="src/main/script">
+                                        <filename name="*.bat" />
+                                    </fileset>
+                                    <filterset>
+                                        <filtersfile file="target/windows_cp.properties" />
+                                        <filter token="batchJarName" value="${project.build.finalName}" />
+                                    </filterset>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-5</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/resources/assembly/assembly-bin.xml</descriptor>
+						<descriptor>src/main/resources/assembly/assembly-batch.xml</descriptor>
+					</descriptors>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

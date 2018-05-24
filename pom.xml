@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.insee</groupId>
+	<artifactId>mpg</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<!-- Héritage du POM Insee -->
+	<parent>
+		<groupId>fr.insee.maven</groupId>
+		<artifactId>pom-parent</artifactId>
+		<version>1.0.5</version>
+	</parent>
+
+	<!-- Nom et description du projet -->
+	<name>Mpg - Module parent</name>
+	<description>Mpg - Module parent</description>
+
+	<!-- Adresse URL de la page d'accueil du projet -->
+	<url>http://www.insee.fr</url>
+
+	<!-- On définit ici le lien vers le tracker d'anomalies du projet. L'URL 
+		est disponible sur la page d'accueil du projet sur GForge -->
+	<issueManagement>
+		<system>gforge.insee.fr</system>
+		<url>http://gforge.insee.fr</url>
+	</issueManagement>
+
+
+
+	<!-- Déploiement du projet sur CVS via Maven : ne rien mettre si vous utilisez 
+		Eclipse ou TortoiseCVS On définit ici les informations nécessaires pour relier 
+		le projet à son dépôt CVS -->
+	<scm>
+		<!-- La balise <connection> doit être de la forme : scm:cvs:ext:idep@gforge.insee.fr:/cvsroot/nom-du-projet:nom-du-module 
+			Par exemple : scm:cvs:ext:ozp6kz@gforge.insee.fr:/cvsroot/maven-repo:nom-du-module -->
+		<!-- La balise URL dépend des mêmes paramètres que la balise <connection>, 
+			à savoir le nom du projet, et le nom du module. En reprenant l'exemple précédent 
+			: http://gforge.insee.fr/plugins/scmcvs/cvsweb.php/nom-du-module/?cvsroot=maven-repo -->
+	</scm>
+
+
+
+	<!-- Déploiement du site HTML : laisser en commentaire si vous n'utilisez 
+		pas la fonction Les balises suivantes permettent de définir l'URL du site 
+		sur lequel sera deployé les pages documentaires HTML générées par Maven lors 
+		de la commande mvn site:deploy. Veuillez vous assurer d'avoir les droits 
+		nécessaires pour déployer des fichiers sur l'URL choisie avant de lancer 
+		la commande. Par exemple : <distributionManagement> <site> <id>gforge.insee.fr</id> 
+		<name>Site web test</name> <url> scp://gforge.insee.fr/insee/groups/maven-repo/htdocs/testSite 
+		</url> </site> </distributionManagement> Maven va déployer le site HTML sur 
+		le projet "maven-repo" de GForge. Il sera ensuite accessible via l'URL http://gforge.insee.fr/groups/maven-repo/testSite/ -->
+
+
+	<!-- Ce bloc permet de recenser les différents membres de l'équipe projet, 
+		chacun étant défini dans une balise <developer> distincte -->
+	<developers>
+
+		<developer>
+			<id>idep</id>
+			<name>Prénom Nom</name>
+			<email>prenom.nom@insee.fr</email>
+			<organization>INSEE</organization>
+			<organizationUrl>http://www.insee.fr</organizationUrl>
+			<roles>
+				<role>Développeur</role>
+			</roles>
+		</developer>
+
+	</developers>
+
+	<!-- Si des individus extérieurs à l'équipe projet ont contribué, ils peuvent 
+		être référencés à l'aide du bloc suivant -->
+	<contributors>
+
+		<contributor>
+			<name>Prénom Nom</name>
+			<email>prenom.nom@organisation.fr</email>
+			<!-- Si le contributeur est extérieur à l'Insee, on pourra définir son 
+				organisation d'appartenance -->
+			<organization>Nom de l'organisation</organization>
+			<organizationUrl>http://www.organisation.fr</organizationUrl>
+			<roles>
+				<role>Testeur</role>
+			</roles>
+		</contributor>
+
+	</contributors>
+	
+	<properties>
+		<log4j.version>1.2.17</log4j.version>
+		<insee.config.version>2.4.4</insee.config.version>
+		<jersey.version>2.22.1</jersey.version>
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<commons.io>2.4</commons.io>
+		<commons.fileupload>1.3.1</commons.fileupload>
+		<commons.lang>2.6</commons.lang>
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<cglib.version>2.2.2</cglib.version>
+		<jaxb.version>0.6.4</jaxb.version>
+		<ant.version>1.4</ant.version>
+		<httpclient.version>4.4</httpclient.version>
+		<xalan.version>2.7.1</xalan.version>
+	</properties>
+
+
+
+	<!-- *************************************** LA GESTION DES DEPENDANCES 
+		COMMENCE ICI *************************************** -->
+	<!-- ********************************* FIN DE LA GESTION DES DEPENDANCES 
+		********************************* -->
+
+
+	<!-- Le tag <build> permet de gérer des éléments ayant trait à la construction 
+		du projet par Maven, notamment la configuration des plugins quand le comportement 
+		par défaut de ceux-ci n'est pas adapté. -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<!-- La configuration des plugins se fait au cas par cas, à l'aide de tags 
+			<plugin>, eux-mêmes contenus dans un tag <plugins>. Le tag se présente de 
+			la manière suivante (l'exemple est pris sur le plugin "site" dans le fichier 
+			pom Insee) : <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-site-plugin</artifactId> 
+			<version>2.0.1</version> <configuration> <locales>fr</locales> </configuration> 
+			</plugin> Les tags <groupId>, <artifactId> et <version> servent à identifier 
+			le plugin que vous souhaitez ajouter configurer. Le tag <configuration> est 
+			celui qui va porter les différents éléments de configuration du plugin. Il 
+			va de soi que le contenu de ce tag change d'un plugin à l'autre. Dans l'exemple, 
+			nous demandons au plugin "site" (chargé de créer le site HTML documentaire 
+			Maven) de générer un site en français. Quasiment tous les plugins possèdent 
+			un site Internet, sur lequel on pourra trouver les informations nécessaires 
+			à leur configuration. -->
+	</build>
+
+	<modules>
+		<module>mpg-batch</module>
+	</modules>
+
+
+</project>

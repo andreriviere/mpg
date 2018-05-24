@@ -1,0 +1,45 @@
+<assembly xmlns="https://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.0.0.1-SNAPSHOT" 
+  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.0.0.1-SNAPSHOT http://maven.apache.org/xsd/assembly-1.0.0.1-SNAPSHOT.xsd">
+	<id>BATCH</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	
+	<fileSets>
+		<fileSet>
+	      <directory>src/main/resources/fr/insee/config</directory>
+	      <outputDirectory>properties-de-developpement</outputDirectory>
+	      <includes>
+			<!-- Fichiers .properties de développement-->
+			<include>**/*.properties</include>
+	      </includes>
+    	</fileSet>
+    	
+    	<fileSet>
+	      <directory>src/main/resources/assembly</directory>
+	      <outputDirectory/>
+	      <includes>
+	        <!-- Fichiers .properties de production-->
+			<include>**/*.properties</include>
+	      </includes>
+    	</fileSet>
+    	
+	</fileSets>
+	
+    <files>
+	    <file>
+		    <source>target/${project.artifactId}-${project.version}-BIN.zip</source>
+		    <outputDirectory/>
+		    <destName>${insee.nomLivraison}-bin.zip</destName>
+	    </file>
+	    
+	    <file>
+		    <source>src/main/resources/assembly/fiche-de-livraison.txt</source>
+		    <outputDirectory/>
+		    <destName>${insee.nomLivraison}.txt</destName>
+	    </file>
+    </files>
+	
+</assembly>
