@@ -1,4 +1,4 @@
-package fr.insee.mpg.batch;
+package fr.insee.mpg.figures;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

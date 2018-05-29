@@ -1,4 +1,4 @@
-package fr.insee.mpg.batch;
+package fr.insee.mpg.figures;
 
 public class Point {
 	

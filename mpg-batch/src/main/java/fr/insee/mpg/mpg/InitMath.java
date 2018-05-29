@@ -36,8 +36,9 @@ import javax.swing.JRadioButtonMenuItem;
 
 import org.apache.commons.lang.StringUtils;
 
-import fr.insee.mpg.batch.Fenetre;
-public class Lanceur extends JFrame {
+import fr.insee.mpg.batch.IBatch;
+import fr.insee.mpg.figures.Fenetre;
+public class InitMath extends JFrame implements IBatch {
 	
 
 	
@@ -69,12 +70,12 @@ public class Lanceur extends JFrame {
 	  private JPopupMenu jpm = new JPopupMenu();
 	  
 	 
-	  public static void main(String[] args){
-		  Lanceur l = new Lanceur();
+	  public void executer(String[] args){
+		  InitMath l = new InitMath();
 	  }
 
 
-	  public Lanceur(){
+	  public InitMath(){
 
 	    this.setSize(800, 400);
 

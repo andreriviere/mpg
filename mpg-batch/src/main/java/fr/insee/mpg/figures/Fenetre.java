@@ -1,14 +1,9 @@
-package fr.insee.mpg.batch;
+package fr.insee.mpg.figures;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Polygon;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -25,7 +20,7 @@ public class Fenetre extends JFrame {
 	  }
   }
   
-  public Fenetre(Test test, String title, String color){      
+  public Fenetre(Init test, String title, String color){      
 	  if (StringUtils.containsIgnoreCase(title, "triangle")) {
 		ZDialog zd = new ZDialog(null, title, color, true);
 		ZDialogInfo zInfo = zd.showZDialog(); 

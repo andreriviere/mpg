@@ -1,4 +1,4 @@
-package fr.insee.mpg.batch;
+package fr.insee.mpg.figures;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -37,6 +37,14 @@ import javax.swing.JRadioButtonMenuItem;
 
 import org.apache.commons.lang.StringUtils;
 
+import fr.insee.mpg.batch.IBatch;
+import fr.insee.mpg.figures.Fenetre;
+import fr.insee.mpg.figures.GUIHelper;
+import fr.insee.mpg.figures.IDrawable;
+import fr.insee.mpg.figures.JCanvas;
+import fr.insee.mpg.figures.LineDrawable;
+import fr.insee.mpg.figures.Quadrangle;
+import fr.insee.mpg.figures.Triangle;
 import fr.insee.mpg.math.Expression;
 import fr.insee.mpg.math.Sum;
 import fr.insee.mpg.math.Product;
@@ -44,7 +52,7 @@ import fr.insee.mpg.math.SquareRoot;
 import fr.insee.mpg.math.Number;
 
 
-public class Test extends JFrame {
+public class Init extends JFrame implements IBatch {
 
   private JMenuBar menuBar = new JMenuBar();
 
@@ -82,17 +90,12 @@ public class Test extends JFrame {
   
   private List<Quadrangle> listeQ;
  
-  public static void main(String[] args){
-	  Expression e = new Sum(new Product(new Number(2), new Number(3)), new Number(5));
-	  System.out.println(e.value());
-	  System.out.println(e.toString());
-	  Expression f = new SquareRoot(new Number(4));
-	  System.out.println(f.value());
-	  System.out.println(f.toString());
+  public void executer(String[] args) {
+	  Init i = new Init(args[0]);
   }
 
 
-  public Test(String color){
+  public Init(String color){
 
     this.setSize(800, 400);
 
@@ -175,8 +178,8 @@ public class Test extends JFrame {
   }
   
   public class StartAnimationListener implements ActionListener{
-	  	public Test test;
-	  	public StartAnimationListener(Test test) {
+	  	public Init test;
+	  	public StartAnimationListener(Init test) {
 	  		this.test = test;
 	  	}
 	  	
@@ -235,10 +238,10 @@ public class Test extends JFrame {
   
   public class AjoutListener implements ActionListener{
 
-	  public Test test;
+	  public Init test;
 	  public String type;
 	  public String color;
-	  public AjoutListener(Test test, String type, String color) {
+	  public AjoutListener(Init test, String type, String color) {
 		  this.test = test;
 		  this.type = type;
 		  this.color = color;
@@ -262,9 +265,9 @@ public class Test extends JFrame {
   
   public class MoveListener implements ActionListener{
 
-	  public Test test;
+	  public Init test;
 	  public String color;
-	  public MoveListener(Test test, String color) {
+	  public MoveListener(Init test, String color) {
 		  this.test = test;
 		  this.color = color;
 	  }
@@ -279,9 +282,9 @@ public class Test extends JFrame {
 
   public class ColorListener implements ActionListener{
 
-	  public Test test;
+	  public Init test;
 	  public String color;
-	  public ColorListener(Test test, String color) {
+	  public ColorListener(Init test, String color) {
 		  this.test = test;
 		  this.color = color;
 	  }
@@ -296,9 +299,9 @@ public class Test extends JFrame {
   
   public class RandomListener implements ActionListener{
 
-	  public Test test;
+	  public Init test;
 	  public String color;
-	  public RandomListener(Test test, String color) {
+	  public RandomListener(Init test, String color) {
 		  this.test = test;
 		  this.color = color;
 	  }
