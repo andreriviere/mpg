@@ -38,7 +38,7 @@ import org.apache.commons.lang.StringUtils;
 
 import fr.insee.mpg.batch.IBatch;
 import fr.insee.mpg.figures.Fenetre;
-public class InitMath extends JFrame implements IBatch {
+public class InitMpg extends JFrame implements IBatch {
 	
 
 	
@@ -71,11 +71,11 @@ public class InitMath extends JFrame implements IBatch {
 	  
 	 
 	  public void executer(String[] args){
-		  InitMath l = new InitMath();
+		  InitMpg l = new InitMpg();
 	  }
 
 
-	  public InitMath(){
+	  public InitMpg(){
 
 	    this.setSize(800, 400);
 

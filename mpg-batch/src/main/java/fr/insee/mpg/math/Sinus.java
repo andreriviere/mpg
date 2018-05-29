@@ -2,20 +2,20 @@ package fr.insee.mpg.math;
 
 import org.apache.commons.lang.StringUtils;
 
-public class SquareRoot extends Expression {
+public class Sinus extends Expression {
 	public Expression e1;
 	
-	public SquareRoot(Expression n1) {
+	public Sinus(Expression n1) {
 		super(n1.getValue1());
 		setE1(n1);
 	}
 
 	public float value() {
-		return (float) Math.sqrt(Double.parseDouble(StringUtils.substringBefore(String.valueOf(getValue1()), ".")));
+		return (float) Math.sin(Double.valueOf(StringUtils.substringBefore(String.valueOf(getValue1()), ".")));
 	}
 	
 	public String toString() {
-		return "'" + StringUtils.substringBeforeLast(e1.toString(), "'") + " ^ (1/2)'";
+		return "' sin(" + StringUtils.substringBeforeLast(e1.toString(), "'") + ") '";
 	}
 	
 	public Expression getE1() {

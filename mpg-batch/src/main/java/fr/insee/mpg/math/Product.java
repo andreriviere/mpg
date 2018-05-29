@@ -18,7 +18,7 @@ public class Product extends Expression {
 	}
 	
 	public String toString() {
-		return StringUtils.substringBeforeLast(e1.toString(), "'") + " * " + StringUtils.substringBeforeLast(e2.toString(), "'");
+		return StringUtils.substringBeforeLast(e1.toString(), "'") + " * " + StringUtils.substringBeforeLast(e2.toString(), "'") + "'";
 	}
 
 	public Expression getE1() {
