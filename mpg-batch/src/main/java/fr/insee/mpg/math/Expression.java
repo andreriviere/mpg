@@ -15,6 +15,8 @@ public abstract class Expression {
 	}
 	
 	public abstract float value();
+	
+	public abstract String toString();
 
 	public float getValue1() {
 		return value1;

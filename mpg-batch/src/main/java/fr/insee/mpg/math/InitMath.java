@@ -9,25 +9,25 @@ public class InitMath implements IBatch {
 
 	System.out.println(e.value());
 
-	System.out.println(e.toString());
+	System.out.println(e);
 
 	Expression f = new SquareRoot(new Number(4));
 
 	System.out.println(f.value());
 
-	System.out.println(f.toString());
+	System.out.println(f);
 	
 	Expression g = new Product(new Sum(new Number(2), new Number(3)), new Number(5));
 
 	System.out.println(g.value());
 
-	System.out.println(g.toString());
+	System.out.println(g);
 	
 	Expression h = new Sinus(new Number(2));
 
 	System.out.println(h.value());
 
-	System.out.println(h.toString());
+	System.out.println(h);
 
 	}
 }
