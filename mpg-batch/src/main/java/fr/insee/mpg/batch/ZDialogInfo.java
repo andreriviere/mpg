@@ -1,8 +1,18 @@
 package fr.insee.mpg.batch;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.apache.commons.lang.StringUtils;
+
 public class ZDialogInfo {
 		private Image image;
-	  private String col, abscisse1, ordonnee1, abscisse2, ordonnee2, abscisse3, ordonnee3, abscisse4, ordonnee4;
+	  private String nom, prenom, equipe, poste, col, abscisse1, ordonnee1, abscisse2, ordonnee2, abscisse3, ordonnee3, abscisse4, ordonnee4;
 	  
 	  private int longueurCarre;
 
@@ -46,8 +56,10 @@ public class ZDialogInfo {
 
 	  }
 	  
-	  public ZDialogInfo(String color, String abscisse1, String ordonnee1, String longueur) {
+	  public ZDialogInfo(String color, String abscisse1, String ordonnee1, String longueur) throws IOException {
 
+		  if (StringUtils.isNumeric(longueur)) {
+		  
 		  setAbscisse1(abscisse1);
 
 		  setOrdonnee1(ordonnee1);
@@ -62,7 +74,34 @@ public class ZDialogInfo {
 		  }
 		  image.addObject(new Square(color, point1, this.getLongueurCarre()));
 		  setImage(image);
+		  
+		  } else {
+			  File fichierEntree = new File("C:/Users/j3l061/Personnel/mpg.csv");
+			  if (!fichierEntree.exists()) {
+				  fichierEntree.mkdirs();
+			  }
+			  File fichierSortie = new File(fichierEntree.getParent() + "mpgtemp.csv");
+			  FileReader inputFileR = new FileReader(fichierEntree);
+			  FileWriter outputFileR = new FileWriter(fichierSortie);
+			  //$NON-NLS-1$
+			  BufferedWriter buffwriter = new BufferedWriter(outputFileR);
+				BufferedReader buffreader = new BufferedReader(inputFileR);
 
+				// recopie du fichier.
+				String read = buffreader.readLine();
+				while (read != null) {
+					buffwriter.write(read);
+					// écriture de la ligne dans le fichier de sauvegarde
+					buffwriter.write("\n"); //$NON-NLS-1$
+					read = buffreader.readLine(); // lecture d'une nouvelle ligne.
+				}
+				buffwriter.write(color + " ; " + abscisse1 + " ; " + abscisse2 + " ; " + longueur);
+				buffwriter.flush();
+				outputFileR.close();
+				buffwriter.close();
+				inputFileR.close();
+				buffreader.close();
+		  }
 	  }
 	  
 	  

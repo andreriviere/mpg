@@ -37,6 +37,12 @@ import javax.swing.JRadioButtonMenuItem;
 
 import org.apache.commons.lang.StringUtils;
 
+import fr.insee.mpg.math.Expression;
+import fr.insee.mpg.math.Sum;
+import fr.insee.mpg.math.Product;
+import fr.insee.mpg.math.SquareRoot;
+import fr.insee.mpg.math.Number;
+
 
 public class Test extends JFrame {
 
@@ -77,53 +83,12 @@ public class Test extends JFrame {
   private List<Quadrangle> listeQ;
  
   public static void main(String[] args){
-	  Figure figures[] = new Figure[10];
-	  for (int i=0; i <10; i++) {
-		  Figure f = new Figure(args[0]);
-		  Long x = Math.round(Math.random() * 3); 
-		  if (x == 1) {
-			  f = new Quadrangle(args[0], new java.awt.Point(Integer.valueOf(args[1]).intValue() + 10*i, Integer.valueOf(args[2]).intValue() + 10*i), new java.awt.Point(Integer.valueOf(args[2]).intValue() + 10*i, Integer.valueOf(args[2]).intValue() + 10*i), new java.awt.Point(Integer.valueOf(args[2]).intValue() + 10*i, Integer.valueOf(args[1]).intValue() + 10*i), new java.awt.Point(Integer.valueOf(args[1]).intValue() + 10*i, Integer.valueOf(args[1]).intValue() + 10*i));
-		  } else if (x == 2) {
-			  f = new fr.insee.mpg.batch.Rectangle(args[0], new java.awt.Point(Integer.valueOf(args[1]).intValue() + 10*i, Integer.valueOf(args[2]).intValue() + 10*i), new java.awt.Point(Integer.valueOf(args[2]).intValue() + 10*i, Integer.valueOf(args[1]).intValue() + 10*i));
-		  } else if (x == 3) {
-			  f = new Square(args[0], new java.awt.Point(Integer.valueOf(args[1]).intValue() + 10*i, Integer.valueOf(args[2]).intValue() + 10*i), Integer.valueOf(args[3]).intValue() + 10*i);
-		  }
-		  figures[i]=f;
-	  }
-	  int nombreCarres=0;
-	  int nombreRectangles=0;
-	  int nombreQuadrangles=0;
-	  int nombreFigures=0;
-	  Square squares[] = new Square[10];
-	  for (int i = 0; i<figures.length; i++) {
-
-		  if (figures[i] instanceof Square) {
-			  nombreCarres++;
-			  for (int j=0;j<10;j++) {
-				  if (squares[j] == null) {
-					  squares[j] = (Square) figures[i];
-					  break;
-				  }
-			  }
-		  } else if (figures[i] instanceof fr.insee.mpg.batch.Rectangle) {
-			  nombreRectangles++;
-		  } else if (figures[i] instanceof Quadrangle) {
-			  nombreQuadrangles++;
-		  } else {
-			  nombreFigures++;
-		  }
-	  }
-	  System.out.println(nombreCarres + nombreRectangles + nombreQuadrangles + nombreFigures);
-	  for (int j=0;j<10;j++) {
-		  if (squares[j] == null) {
-			  try {
-				  squares[j] = (Square) new fr.insee.mpg.batch.Rectangle(args[0], new java.awt.Point(Integer.valueOf(args[1]).intValue(), Integer.valueOf(args[2]).intValue()), new java.awt.Point(Integer.valueOf(args[2]).intValue(), Integer.valueOf(args[1]).intValue()));
-			  } catch (Exception e) {
-				  System.out.println("Don't like when you add a non Square to an Array of Squares. Exception caught, and its type is " + e.getMessage());
-			  }
-			  break;
-		  }
-	  }
+	  Expression e = new Sum(new Product(new Number(2), new Number(3)), new Number(5));
+	  System.out.println(e.value());
+	  System.out.println(e.toString());
+	  Expression f = new SquareRoot(new Number(4));
+	  System.out.println(f.value());
+	  System.out.println(f.toString());
   }
 
 

@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 
@@ -43,14 +44,30 @@ public class ZDialog extends JDialog {
 
   private boolean sendData;
 
-  private JLabel colorLabel, abscisse1Label, ordonnee1Label, abscisse2Label, ordonnee2Label, abscisse3Label,ordonnee3Label, abscisse4Label, ordonnee4Label, icon;
+  private JLabel nomLabel, prenomLabel, equipeLabel, posteLabel, colorLabel, abscisse1Label, ordonnee1Label, abscisse2Label, ordonnee2Label, abscisse3Label,ordonnee3Label, abscisse4Label, ordonnee4Label, icon;
 
 
-  private JTextField colorfigures, abscisse1, ordonnee1, abscisse2, ordonnee2, abscisse3, ordonnee3, abscisse4, ordonnee4;
+  private JTextField nom, prenom, equipe, poste, colorfigures, abscisse1, ordonnee1, abscisse2, ordonnee2, abscisse3, ordonnee3, abscisse4, ordonnee4;
   
   private String col;
 
 
+  public ZDialog(JFrame parent, String title, boolean modal){
+
+	    super(parent, title, modal);
+
+	    this.setSize(550, 550);
+
+	    this.setLocationRelativeTo(null);
+
+	    this.setResizable(false);
+
+	    this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+
+	    this.initComponent(title);
+
+	  }
+  
   public ZDialog(JFrame parent, String title, String color, boolean modal){
 
     super(parent, title, modal);
@@ -392,7 +409,12 @@ public class ZDialog extends JDialog {
 
 	      public void actionPerformed(ActionEvent arg0) {        
 	 
-	        zInfo = new ZDialogInfo(col, abscisse1.getText(), ordonnee1.getText(), abscisse2.getText());
+	        try {
+				zInfo = new ZDialogInfo(col, abscisse1.getText(), ordonnee1.getText(), abscisse2.getText());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 	        setVisible(false);
 
@@ -455,6 +477,107 @@ public class ZDialog extends JDialog {
 
   }
 
+  
+  private void initComponent(String title){
+
+	    //Icône
+		  
+	    icon = new JLabel(new ImageIcon("images/icone.jpg"));
+
+	    JPanel panIcon = new JPanel();
+
+	    panIcon.setBackground(Color.white);
+
+	    panIcon.setLayout(new BorderLayout());
+
+	    panIcon.add(icon);
+
+
+	    //Le nom
+	    
+	    JPanel content = new JPanel();
+
+	   
+	    if (StringUtils.containsIgnoreCase(title, "ajouter")) {
+	    	JPanel panNom = new JPanel();
+	    	panNom.setBackground(Color.white);
+	    	panNom.setPreferredSize(new Dimension(220, 60));
+	    	panNom.setBorder(BorderFactory.createTitledBorder("Ajouter joueur"));
+	    	nom = new JTextField();
+	    	nom.setPreferredSize(new Dimension(100, 25));
+	    	nomLabel = new JLabel("Saisir nom :");
+	    	panNom.add(nomLabel);
+	    	panNom.add(nom);
+	    	prenom = new JTextField();
+	    	prenom.setPreferredSize(new Dimension(100, 25));
+	    	prenomLabel = new JLabel("Saisir prénom :");
+	    	panNom.add(prenomLabel);
+	    	panNom.add(prenom);
+	    	equipe = new JTextField();
+	    	equipe.setPreferredSize(new Dimension(100, 25));
+	    	equipeLabel = new JLabel("Saisir équipe :");
+	    	panNom.add(equipeLabel);
+	    	panNom.add(equipe);
+	    	poste = new JTextField();
+	    	poste.setPreferredSize(new Dimension(100, 25));
+	    	posteLabel = new JLabel("Saisir poste :");
+	    	panNom.add(posteLabel);
+	    	panNom.add(poste);
+	    	content.add(panNom);
+	    }
+	   
+
+	    JPanel control = new JPanel();
+
+	    JButton okBouton = new JButton("OK");
+
+	    
+	    if (StringUtils.containsIgnoreCase(title, "ajouter")) {
+	    okBouton.addActionListener(new ActionListener(){
+
+	      public void actionPerformed(ActionEvent arg0) {        
+	 
+	        try {
+				zInfo = new ZDialogInfo(nom.getText(), prenom.getText(), equipe.getText(), poste.getText());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+	        setVisible(false);
+
+	      }
+	     
+
+	    });
+	    } 
+
+
+	    JButton cancelBouton = new JButton("Annuler");
+
+	    cancelBouton.addActionListener(new ActionListener(){
+
+	      public void actionPerformed(ActionEvent arg0) {
+
+	        setVisible(false);
+
+	      }      
+
+	    });
+
+
+	    control.add(okBouton);
+
+	    control.add(cancelBouton);
+
+
+	    this.getContentPane().add(panIcon, BorderLayout.WEST);
+
+	    this.getContentPane().add(content, BorderLayout.CENTER);
+
+	    this.getContentPane().add(control, BorderLayout.SOUTH);
+
+	  }
 
 public ZDialogInfo getzInfo() {
 	return zInfo;

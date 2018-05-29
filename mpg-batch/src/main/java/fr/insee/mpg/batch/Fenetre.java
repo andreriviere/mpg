@@ -17,6 +17,14 @@ import org.apache.commons.lang.StringUtils;
 public class Fenetre extends JFrame {
 	
   public ZDialogInfo zI;
+  
+  public Fenetre(String title) {
+	  if (StringUtils.equalsIgnoreCase(title, "ajouter")) {
+		  ZDialog zd = new ZDialog(null, title, true);
+		
+	  }
+  }
+  
   public Fenetre(Test test, String title, String color){      
 	  if (StringUtils.containsIgnoreCase(title, "triangle")) {
 		ZDialog zd = new ZDialog(null, title, color, true);
