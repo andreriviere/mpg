@@ -122,7 +122,7 @@ public class InitMpg extends JFrame implements IBatch {
 	    
 	    item4.addActionListener(new AjoutListener("mettre à jour résultats"));
 	    
-	    item4.addActionListener(new AjoutListener("afficher"));
+	    item5.addActionListener(new AjoutListener("afficher"));
 
 	    //L'ordre d'ajout va déterminer l'ordre d'apparition dans le menu de gauche à droite
 

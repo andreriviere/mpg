@@ -16,7 +16,8 @@ public class Fenetre extends JFrame {
   public Fenetre(String title) {
 	  if (StringUtils.equalsIgnoreCase(title, "ajouter")) {
 		  ZDialog zd = new ZDialog(null, title, true);
-		
+		  ZDialogInfo zInfo = zd.showZDialog(); 
+		setzI(zInfo);
 	  }
   }
   
