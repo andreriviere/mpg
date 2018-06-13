@@ -95,7 +95,7 @@ public class Init extends JFrame implements IBatch {
   }
 
 
-  public Init(String color){
+  public Init(String color) {
 
     this.setSize(800, 400);
 

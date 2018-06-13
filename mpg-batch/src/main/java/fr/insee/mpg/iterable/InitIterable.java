@@ -27,6 +27,7 @@ public class InitIterable implements IBatch{
         	System.out.println(it.next());
         }
         it=array.iterator();
+        it.next();
         it.remove();
         for (String s : array) {
             System.out.println(s);
