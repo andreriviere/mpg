@@ -109,7 +109,7 @@ public class MyStackListe implements MyStackInterface {
 
 		} else {
 
-			new StackFullException("MyStack has already reached its maximum size ! Data not added.");
+			throw new StackFullException("MyStack has already reached its maximum size ! Data not added.");
 
 		}
 
@@ -135,7 +135,7 @@ public class MyStackListe implements MyStackInterface {
 
 		List<Integer> liste = getMaListe();
 
-		if (liste != null || liste.size() != 0 ) {
+		if (liste != null && liste.size() != 0 ) {
 
 			return liste.get(liste.size() - 1).intValue();
 

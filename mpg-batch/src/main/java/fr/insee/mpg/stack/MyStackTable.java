@@ -142,7 +142,7 @@ public class MyStackTable implements MyStackInterface {
 
 		Integer[] liste = getMaListe();
 
-		if (liste != null || liste.length != 0 ) {
+		if (liste != null && liste.length != 0 ) {
 
 			return liste[liste.length - 1].intValue();
 

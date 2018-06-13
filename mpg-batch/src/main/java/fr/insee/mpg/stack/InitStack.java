@@ -10,7 +10,7 @@ public class InitStack implements IBatch {
 		try {
 			s1.top();
 		} catch (StackEmptyException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		try {
 			s1.push(1);
@@ -26,7 +26,7 @@ public class InitStack implements IBatch {
 			s1.push(11);
 		} catch (StackFullException e1) {
 			// TODO Auto-generated catch block
-			e1.getStackTrace();
+			e1.printStackTrace();
 		}
 
 
