@@ -104,7 +104,7 @@ public class MyStackTable implements MyStackInterface {
 
 			if (j==getMaximumSize()-1 && liste[j] != null) {
 
-				throw new StackFullException("MyStack has already reached its maximum size ! Data not added.");
+				throw new StackFullException();
 
 			} 
 
@@ -148,7 +148,7 @@ public class MyStackTable implements MyStackInterface {
 
 		} else {
 
-			throw new StackEmptyException("No data in MyStack");
+			throw new StackEmptyException();
 
 		}
 
@@ -172,7 +172,7 @@ public class MyStackTable implements MyStackInterface {
 			setMaListe(listeFinale);
 
 		} else {
-			throw new StackEmptyException("No data in MyStack");
+			throw new StackEmptyException();
 		}
 
 	}

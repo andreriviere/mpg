@@ -109,7 +109,7 @@ public class MyStackListe implements MyStackInterface {
 
 		} else {
 
-			throw new StackFullException("MyStack has already reached its maximum size ! Data not added.");
+			throw new StackFullException();
 
 		}
 
@@ -141,7 +141,7 @@ public class MyStackListe implements MyStackInterface {
 
 		} else {
 
-			throw new StackEmptyException("No data in MyStack");
+			throw new StackEmptyException();
 
 		}
 
@@ -157,7 +157,7 @@ public class MyStackListe implements MyStackInterface {
 			liste.remove(liste.size() - 1);
 
 		} else {
-			throw new StackEmptyException("No data in MyStack");
+			throw new StackEmptyException();
 		}
 
 		setMaListe(liste);
