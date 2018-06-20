@@ -1,0 +1,272 @@
+package fr.insee.mpg.bank;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.apache.commons.lang.StringUtils;
+
+public class ZDialogInfo {
+	  private String number, equipe, poste, abscisse1, ordonnee1, abscisse2, ordonnee2, abscisse3, ordonnee3, abscisse4, ordonnee4;
+	  
+	  private int somme, longueurCarre;
+
+
+	  public ZDialogInfo(){}
+
+	  public ZDialogInfo(String som){
+
+		  setSomme(Integer.valueOf(som).intValue());
+
+	  }
+	  
+	  public ZDialogInfo(String number, String som){
+
+		  setNumber(number);
+
+		  setSomme(Integer.valueOf(som).intValue());
+
+	  }
+	  
+	  public ZDialogInfo(String color, String abscisse1, String ordonnee1, String abscisse3, String ordonnee3) {
+
+		  setAbscisse1(abscisse1);
+
+		  setOrdonnee1(ordonnee1);
+		  
+		  setAbscisse3(abscisse3);
+		  
+		  setOrdonnee3(ordonnee3);
+		  
+		  java.awt.Point point1 = new java.awt.Point(Integer.parseInt(ordonnee1), Integer.parseInt(abscisse1));
+
+		  java.awt.Point point3 = new java.awt.Point(Integer.parseInt(ordonnee3), Integer.parseInt(abscisse3));
+
+
+	  }
+	  
+	  public ZDialogInfo(String color, String abscisse1, String ordonnee1, String longueur) throws IOException {
+
+		  if (StringUtils.isNumeric(longueur)) {
+		  
+		  setAbscisse1(abscisse1);
+
+		  setOrdonnee1(ordonnee1);
+		  
+		  setLongueurCarre(Integer.parseInt(longueur));
+		  
+		  java.awt.Point point1 = new java.awt.Point(Integer.parseInt(ordonnee1), Integer.parseInt(abscisse1));
+		  
+		  } else {
+			  File fichierEntree = new File("C:/Users/j3l061/Personnel/mpg.csv");
+			  if (!fichierEntree.exists()) {
+				  fichierEntree.mkdirs();
+			  }
+			  File fichierSortie = new File(fichierEntree.getParent() + "mpgtemp.csv");
+			  FileReader inputFileR = new FileReader(fichierEntree);
+			  FileWriter outputFileR = new FileWriter(fichierSortie);
+			  //$NON-NLS-1$
+			  BufferedWriter buffwriter = new BufferedWriter(outputFileR);
+				BufferedReader buffreader = new BufferedReader(inputFileR);
+
+				// recopie du fichier.
+				String read = buffreader.readLine();
+				while (read != null) {
+					buffwriter.write(read);
+					// écriture de la ligne dans le fichier de sauvegarde
+					buffwriter.write("\n"); //$NON-NLS-1$
+					read = buffreader.readLine(); // lecture d'une nouvelle ligne.
+				}
+				buffwriter.write(color + " ; " + abscisse1 + " ; " + abscisse2 + " ; " + longueur);
+				buffwriter.flush();
+				outputFileR.close();
+				buffwriter.close();
+				inputFileR.close();
+				buffreader.close();
+		  }
+	  }
+	  
+	  
+	  public ZDialogInfo(String color, String abscisse1, String ordonnee1, String abscisse2, String ordonnee2, String abscisse3, String ordonnee3){
+
+		  
+		  setAbscisse1(abscisse1);
+
+		  setOrdonnee1(ordonnee1);
+
+		  setAbscisse2(abscisse2);
+
+		  setOrdonnee2(ordonnee2);
+
+		  setAbscisse3(abscisse3);
+
+		  setOrdonnee3(ordonnee3);
+	    
+		  java.awt.Point point1 = new java.awt.Point(Integer.parseInt(ordonnee1), Integer.parseInt(abscisse1));
+
+		  java.awt.Point point2 = new java.awt.Point(Integer.parseInt(ordonnee2), Integer.parseInt(abscisse2));
+		  java.awt.Point point3 = new java.awt.Point(Integer.parseInt(ordonnee3), Integer.parseInt(abscisse3));
+
+	  }
+	  
+	  public ZDialogInfo(String color, String abscisse1, String ordonnee1, String abscisse2, String ordonnee2, String abscisse3, String ordonnee3, String abscisse4, String ordonnee4){
+
+		  
+		  	setAbscisse1(abscisse1);
+
+		    setOrdonnee1(ordonnee1);
+
+		    setAbscisse2(abscisse2);
+
+		    setOrdonnee2(ordonnee2);
+
+		    setAbscisse3(abscisse3);
+		    
+		    setOrdonnee3(ordonnee3);
+		    
+		    setAbscisse4(abscisse4);
+		    
+		    setOrdonnee4(ordonnee4);
+		    
+		    java.awt.Point point1 = new java.awt.Point(Integer.parseInt(ordonnee1), Integer.parseInt(abscisse1));
+
+			  java.awt.Point point2 = new java.awt.Point(Integer.parseInt(ordonnee2), Integer.parseInt(abscisse2));
+			  java.awt.Point point3 = new java.awt.Point(Integer.parseInt(ordonnee3), Integer.parseInt(abscisse3));
+			  java.awt.Point point4 = new java.awt.Point(Integer.parseInt(ordonnee4), Integer.parseInt(abscisse4));
+
+		  }
+
+
+	  public String toString(){
+
+	    String str;
+
+	    if(getAbscisse1() != null || getOrdonnee1() != null || getAbscisse2() != null || getOrdonnee2() != null || getAbscisse3() != null || getOrdonnee3() != null || getAbscisse4() != null && getOrdonnee4() != null){
+
+	      str = "Description de l'objet ";
+
+	      str += "Abscisse 1 : " + getAbscisse1() + "\n";
+
+	      str += "Ordonnée 1 : " + getOrdonnee1() + "\n";
+
+	      str += "Abscisse 2 : " + getAbscisse2() + "\n";
+
+	      str += "Ordonnée 2 : " + getOrdonnee2() + "\n";
+
+	      str += "Abscisse 3 : " + getAbscisse3() + "\n";
+	      
+	      str += "Ordonnée 3 : " + getOrdonnee3() + "\n";
+
+	      str += "Abscisse 4 : " + getAbscisse4() + "\n";
+
+	      str += "Ordonnée 4 : " + getOrdonnee4() + "\n";
+
+	    }
+
+	    else{
+
+	      str = "Aucune information !";
+
+	    }
+
+	    return str;
+
+	  }
+
+	  
+	  
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getAbscisse1() {
+		return abscisse1;
+	}
+
+	public void setAbscisse1(String abscisse1) {
+		this.abscisse1 = abscisse1;
+	}
+
+	public String getOrdonnee1() {
+		return ordonnee1;
+	}
+
+	public void setOrdonnee1(String ordonnee1) {
+		this.ordonnee1 = ordonnee1;
+	}
+
+	public String getAbscisse2() {
+		return abscisse2;
+	}
+
+	public void setAbscisse2(String abscisse2) {
+		this.abscisse2 = abscisse2;
+	}
+
+	public String getOrdonnee2() {
+		return ordonnee2;
+	}
+
+	public void setOrdonnee2(String ordonnee2) {
+		this.ordonnee2 = ordonnee2;
+	}
+
+	public String getAbscisse3() {
+		return abscisse3;
+	}
+
+	public void setAbscisse3(String abscisse3) {
+		this.abscisse3 = abscisse3;
+	}
+
+	public String getOrdonnee3() {
+		return ordonnee3;
+	}
+
+	public void setOrdonnee3(String ordonnee3) {
+		this.ordonnee3 = ordonnee3;
+	}
+
+	public String getAbscisse4() {
+		return abscisse4;
+	}
+
+	public void setAbscisse4(String abscisse4) {
+		this.abscisse4 = abscisse4;
+	}
+
+	public String getOrdonnee4() {
+		return ordonnee4;
+	}
+
+	public void setOrdonnee4(String ordonnee4) {
+		this.ordonnee4 = ordonnee4;
+	}
+
+	public int getSomme() {
+		return somme;
+	}
+
+	public void setSomme(int somme) {
+		this.somme = somme;
+	}
+
+	public int getLongueurCarre() {
+		return longueurCarre;
+	}
+
+	public void setLongueurCarre(int longueurCarre) {
+		this.longueurCarre = longueurCarre;
+	}
+	  
+	  
+
+	}
