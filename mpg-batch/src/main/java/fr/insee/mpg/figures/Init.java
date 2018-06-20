@@ -93,8 +93,10 @@ public class Init extends JFrame implements IBatch {
   public void executer(String[] args) {
 	  Init i = new Init(args[0]);
   }
-
-
+  public Init() {
+	  
+  }
+  
   public Init(String color) {
 
     this.setSize(800, 400);
