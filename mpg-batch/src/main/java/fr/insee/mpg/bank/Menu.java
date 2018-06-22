@@ -31,7 +31,7 @@ public class Menu {
 		switch(choice) {
 		
 		case 0:
-		  System.out.println("Thank fot using the application");
+		  System.out.println("Thank for using the application");
 		  System.exit(0);
 		  break;
 		
