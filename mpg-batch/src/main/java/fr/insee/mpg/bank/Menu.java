@@ -97,7 +97,7 @@ public class Menu {
 		if (account == null) {
 			System.out.println("There is no account with the code " + code);
 		} else {
-			System.out.println("Please enter the amount of your deposit");
+			System.out.println("Please enter the amount of your withdrawal");
 			try {
 				account.withdrawal(Double.parseDouble(keyboard.nextLine()));
 			}
