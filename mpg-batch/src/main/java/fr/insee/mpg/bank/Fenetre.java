@@ -27,12 +27,12 @@ public class Fenetre extends JFrame {
 	  ZDialog zd = new ZDialog(null, title, true);
 	  ZDialogInfo zInfo = zd.showZDialog(); 
 	  setzI(zInfo);
-	  List<Account> liste = test.getListeA();
+	  List<AccountOld> liste = test.getListeA();
 	  List<User> listeU = test.getListeU();
 	  if (StringUtils.containsIgnoreCase(title, "add") || StringUtils.containsIgnoreCase(title, "draw") || StringUtils.containsIgnoreCase(title, "show m") || StringUtils.containsIgnoreCase(title, "show o")) {
 		if (liste != null) {
 			int compteur = 0;
-			for (Account account : liste) {
+			for (AccountOld account : liste) {
 				if (StringUtils.equalsIgnoreCase(account.getNumber(), zInfo.getNumber())) {
 					liste.remove(account);
 					if (StringUtils.containsIgnoreCase(title, "add")) {
@@ -61,7 +61,7 @@ public class Fenetre extends JFrame {
 						List<User> owners = new ArrayList<User>();
 						StringBuilder result = new StringBuilder();
 						for (User user : listeU) {
-							for (Account acc : user.getListeA()) {
+							for (AccountOld acc : user.getListeA()) {
 								if (StringUtils.equalsIgnoreCase(acc.getNumber(), account.getNumber())) {
 									owners.add(user);
 									break;
@@ -97,7 +97,7 @@ public class Fenetre extends JFrame {
 		}
 		test.setListeA(liste);
 	  } else if (StringUtils.containsIgnoreCase(title, "sum")) {
-		  List<Account> listeA = new ArrayList<Account>();
+		  List<AccountOld> listeA = new ArrayList<AccountOld>();
 		  int somme = 0;
 		  if (listeU != null) {
 			  for (User user : listeU) {
@@ -106,7 +106,7 @@ public class Fenetre extends JFrame {
 					  break;
 				  }
 			  }
-			  for (Account acc : listeA) {
+			  for (AccountOld acc : listeA) {
 				  somme += acc.getAmount();
 			  }
 			  JOptionPane jop = new JOptionPane();
@@ -126,7 +126,7 @@ public class Fenetre extends JFrame {
 		  }
 		  JOptionPane jop = new JOptionPane();
 		  sb.append("The list of accounts sorted by amounts is : \n ");
-		  for (Account acc : liste) {
+		  for (AccountOld acc : liste) {
 			  sb.append("Number : " + acc.getNumber() + " with " + acc.getAmount() + " zlotys. \n"); 
 		  }
 		  jop.showMessageDialog(null, sb.toString(), "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -138,10 +138,10 @@ public class Fenetre extends JFrame {
 		  }
 		  JOptionPane jop = new JOptionPane();
 		  sb.append("The list of accounts sorted by owner's names is : \n ");
-		  for (Account acc : liste) {
+		  for (AccountOld acc : liste) {
 			  List<User> listU = new ArrayList<User>();
 			  for (User u : listeU) {
-				  for (Account a : u.getListeA()) {
+				  for (AccountOld a : u.getListeA()) {
 					  if (StringUtils.equalsIgnoreCase(acc.getNumber(), a.getNumber())) {
 						  listU.add(u);
 						  break;
@@ -160,7 +160,7 @@ public class Fenetre extends JFrame {
 		  }
 		  JOptionPane jop = new JOptionPane();
 		  sb.append("The list of accounts sorted by number is : \n ");
-		  for (Account acc : liste) {
+		  for (AccountOld acc : liste) {
 			  sb.append("Number : " + acc.getNumber() + ". \n"); 
 		  }
 		  jop.showMessageDialog(null, sb.toString(), "Information", JOptionPane.INFORMATION_MESSAGE);

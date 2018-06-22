@@ -56,7 +56,7 @@ private JMenuBar menuBar = new JMenuBar();
   
   private List<User> listeU;
   
-  private List<Account> listeA;
+  private List<AccountOld> listeA;
   
  
   public void executer(String[] args) {
@@ -69,42 +69,41 @@ private JMenuBar menuBar = new JMenuBar();
     this.setSize(800, 400);
 
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     this.setLocationRelativeTo(null);
-    List<Account> listeA = new ArrayList<Account>();
-    List<Account> listeA1 = new ArrayList<Account>();
-    List<Account> listeA2 = new ArrayList<Account>();
-    List<Account> listeA3 = new ArrayList<Account>();
-    List<Account> listeA4 = new ArrayList<Account>();
-    List<Account> listeA5 = new ArrayList<Account>();
-    Account account1 = new Account();
+    List<AccountOld> listeA = new ArrayList<AccountOld>();
+    List<AccountOld> listeA1 = new ArrayList<AccountOld>();
+    List<AccountOld> listeA2 = new ArrayList<AccountOld>();
+    List<AccountOld> listeA3 = new ArrayList<AccountOld>();
+    List<AccountOld> listeA4 = new ArrayList<AccountOld>();
+    List<AccountOld> listeA5 = new ArrayList<AccountOld>();
+    AccountOld account1 = new AccountOld();
     account1.setAmount(1000);
     account1.setNumber("00001");
-    Account account2 = new Account();
+    AccountOld account2 = new AccountOld();
     account2.setAmount(1000);
     account2.setNumber("00002");
-    Account account3 = new Account();
+    AccountOld account3 = new AccountOld();
     account3.setAmount(1000);
     account3.setNumber("00003");
-    Account account4 = new Account();
+    AccountOld account4 = new AccountOld();
     account4.setAmount(1000);
     account4.setNumber("00004");
-    Account account5 = new Account();
+    AccountOld account5 = new AccountOld();
     account5.setAmount(1000);
     account5.setNumber("00005");
-    Account account6 = new Account();
+    AccountOld account6 = new AccountOld();
     account6.setAmount(1000);
     account6.setNumber("00006");
-    Account account7 = new Account();
+    AccountOld account7 = new AccountOld();
     account7.setAmount(1000);
     account7.setNumber("00007");
-    Account account8 = new Account();
+    AccountOld account8 = new AccountOld();
     account8.setAmount(1000);
     account8.setNumber("00008");
-    Account account9 = new Account();
+    AccountOld account9 = new AccountOld();
     account9.setAmount(1000);
     account9.setNumber("00009");
-    Account account10 = new Account();
+    AccountOld account10 = new AccountOld();
     account10.setAmount(1000);
     account10.setNumber("00010");
     listeA.add(account1);
@@ -273,12 +272,12 @@ public void setListeU(List<User> listeU) {
 }
 
 
-public List<Account> getListeA() {
+public List<AccountOld> getListeA() {
 	return listeA;
 }
 
 
-public void setListeA(List<Account> listeA) {
+public void setListeA(List<AccountOld> listeA) {
 	this.listeA = listeA;
 }
 

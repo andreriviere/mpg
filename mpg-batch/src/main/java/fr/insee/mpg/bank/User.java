@@ -4,7 +4,7 @@ import java.util.List;
 
 public class User implements Comparable {
 	public String name;
-	public List<Account> listeA;
+	public List<AccountOld> listeA;
 	@Override
 	public int compareTo (Object o) {
 		if(o.getClass().equals(User.class)){
@@ -22,11 +22,11 @@ public class User implements Comparable {
 		this.name = name;
 	}
 
-	public List<Account> getListeA() {
+	public List<AccountOld> getListeA() {
 		return listeA;
 	}
 
-	public void setListeA(List<Account> listeA) {
+	public void setListeA(List<AccountOld> listeA) {
 		this.listeA = listeA;
 	}
 	

@@ -10,7 +10,7 @@ import org.apache.commons.lang.StringUtils;
 
 
 
-public class AccountOwnerNameComparator implements Comparator<Account> {
+public class AccountOwnerNameComparator implements Comparator<AccountOld> {
 	public InitBank ib;
 	public AccountOwnerNameComparator(InitBank test) {
 		// TODO Auto-generated constructor stub
@@ -18,19 +18,19 @@ public class AccountOwnerNameComparator implements Comparator<Account> {
 		
 	}
 	@Override
-	public int compare(Account o1, Account o2) {
+	public int compare(AccountOld o1, AccountOld o2) {
 		// TODO Auto-generated method stub
 		List<User> listeU = getIb().getListeU();
 		List<User> liste1 = new ArrayList<User>();
 		List<User> liste2 = new ArrayList<User>();
 		for (User u : listeU) {
-			for (Account acc : u.getListeA()) {
+			for (AccountOld acc : u.getListeA()) {
 				if (StringUtils.equalsIgnoreCase(acc.getNumber(), o1.getNumber())) {
 					liste1.add(u);
 					break;
 				}
 			}
-			for (Account acc : u.getListeA()) {
+			for (AccountOld acc : u.getListeA()) {
 				if (StringUtils.equalsIgnoreCase(acc.getNumber(), o2.getNumber())) {
 					liste2.add(u);
 					break;

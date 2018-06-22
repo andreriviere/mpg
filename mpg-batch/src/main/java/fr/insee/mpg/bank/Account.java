@@ -1,44 +1,46 @@
 package fr.insee.mpg.bank;
 
-import java.util.List;
 
-public class Account implements Comparable {
-	public Integer amount;
-	public String number;
-	public List<User> listeU;
-	
-	@Override
-	public int compareTo (Object o) {
-		if(o.getClass().equals(Account.class)){
-			//Nous allons trier sur le nom d'artiste
-			Account ac = (Account)o;
-			if(this.amount.compareTo(ac.getAmount()) == 0) {
-				return this.number.compareTo(ac.getNumber());
-			}
-			return this.amount.compareTo(ac.getAmount());
-		}
-		return -1;
-	}
-	public Integer getAmount() {
-		return amount;
-	}
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-	public String getNumber() {
-		return number;
-	}
-	public void setNumber(String number) {
-		this.number = number;
-	}
-	public List<User> getListeU() {
-		return listeU;
-	}
-	public void setListeU(List<User> listeU) {
-		this.listeU = listeU;
-	}
-	public List<User> recuperListeU(int number) {
-		return listeU;
-	}
-	
+public class Account {
+	private double balance = 0;
+	private static int numberOfAccounts = 1000000;
+	private String code;
+
+   Account(){
+	   
+   }
+   
+   public double getBalance() {
+	   return balance;
+   }
+  
+   
+   public void withdrawal(double amount) {
+	   if(amount > balance) {
+		   System.out.println("You have insufficient amount");
+		   return;
+	   }
+	   setBalance(balance - amount);
+	   System.out.println("You have withdrawn " + amount + "dollars");
+	   System.out.println("Tha balance now is " + getBalance());
+   }
+   
+   public void deposit(double amount) {
+	   setBalance(balance + amount);
+	   System.out.println("You have deposited " + amount + "dollars");
+   }
+
+public String getCode() {
+	return code;
 }
+
+public void setCode(String code) {
+	this.code = code;
+}
+
+public void setBalance(double balance) {
+	this.balance = balance;
+}
+   
+}
+
